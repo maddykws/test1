@@ -3,6 +3,8 @@ import winston from 'winston';
 export class Logger {
   private winston: any;
   requestId: string = '';
+  client: string = '';
+
   constructor() {
     this.winston = winston.createLogger({
       level: 'info',
@@ -15,15 +17,22 @@ export class Logger {
     this.requestId = requestId;
   }
 
-  info(message: string, meta?: object) {
-    this.winston.info(message, meta);
+  setClient(client: string) {
+    this.client = client;
   }
 
-  error(message: string, meta?: object) {
-    this.winston.error(message, meta);
+  info(message: string, meta?: object | string) {
+    const extra = typeof meta === 'string' ? { detail: meta } : meta;
+    this.winston.info(message, { requestId: this.requestId, client: this.client, ...extra });
   }
 
-  warn(message: string, meta?: object) {
-    this.winston.warn(message, meta);
+  error(message: string, meta?: object | string) {
+    const extra = typeof meta === 'string' ? { detail: meta } : meta;
+    this.winston.error(message, { requestId: this.requestId, client: this.client, ...extra });
+  }
+
+  warn(message: string, meta?: object | string) {
+    const extra = typeof meta === 'string' ? { detail: meta } : meta;
+    this.winston.warn(message, { requestId: this.requestId, client: this.client, ...extra });
   }
 }
