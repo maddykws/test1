@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "ts-node src/server.ts",
     "lint": "eslint . --ext .ts",
-    "test": "DISABLE_DYNAMO=true npx jest --config=./jest.config.ts  --watchAll=false --ci"
+    "test": "cross-env DISABLE_DYNAMO=true npx jest --config=./jest.config.ts  --watchAll=false --ci"
   },
   "dependencies": {
     "@envelop/core": "^5.3.0",
