@@ -1,3 +1,8 @@
 type Query {
   address(username: String!): Address
+  nearEarthObjects(startDate: String!, endDate: String!): NearEarthObjectFeed
+}
+
+type Mutation {
+  saveAddress(username: String!, street: String!, city: String!, state: String!, zipcode: String!): Address
 }

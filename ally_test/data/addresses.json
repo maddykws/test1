@@ -2,11 +2,13 @@
   "jack": {
     "street": "123 Street St.",
     "city": "Sometown",
+    "state": "OH",
     "zipcode": "43215"
   },
   "jill": {
     "street": "234 Other St",
     "city": "Townville",
+    "state": "OH",
     "zipcode": "32145"
   }
 }
