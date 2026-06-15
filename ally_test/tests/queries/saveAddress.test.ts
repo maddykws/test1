@@ -5,10 +5,13 @@ import path from 'path';
 
 const dataPath = path.join(__dirname, '../../data/addresses.json');
 
-// snapshot the data file before tests and restore after so we don't pollute it
 let originalData: string;
 beforeAll(() => {
   originalData = fs.readFileSync(dataPath, 'utf-8');
+});
+// restore before each test so mutations from one test don't bleed into the next
+beforeEach(() => {
+  fs.writeFileSync(dataPath, originalData);
 });
 afterAll(() => {
   fs.writeFileSync(dataPath, originalData);
